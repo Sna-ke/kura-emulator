@@ -7,7 +7,6 @@ services:
   
  before_install:
   - docker build -t bcgovbrian/kapua-emulator .
-  - 
 
 after_success:
   - cd $TRAVIS_BUILD_DIR
