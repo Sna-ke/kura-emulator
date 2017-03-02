@@ -23,7 +23,7 @@ RUN dnf -y install git java-1.8.0-openjdk-devel maven procps-ng zip unzip tar ps
     dnf remove -y git java-1.8.0-openjdk-devel maven && \
     dnf install -y jre-1.8.0-openjdk-headless && \
     rm -Rf /kura /root/.m2 && dnf -y clean all && \
-    chmod +w /var/log/kura.log
+    chmod +w /var/log/
 
 	
 EXPOSE 8080
