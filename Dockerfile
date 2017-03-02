@@ -9,6 +9,7 @@ ENV KURA_COMMIT=a0eb9adcf858806183b6bf869d5b614c3dbe389a
 
 COPY kura.patch /
 
+RUN chmod -R /var/log
 RUN dnf -y install git java-1.8.0-openjdk-devel maven procps-ng zip unzip tar psmisc telnet dos2unix net-tools hostname && \
     git clone https://github.com/eclipse/kura.git && cd kura && git checkout $KURA_COMMIT && \
     ( \
@@ -22,10 +23,8 @@ RUN dnf -y install git java-1.8.0-openjdk-devel maven procps-ng zip unzip tar ps
     /kura/kura/distrib/target/kura_3.0.0-SNAPSHOT_fedora25-nn_installer.sh && \
     dnf remove -y git java-1.8.0-openjdk-devel maven && \
     dnf install -y jre-1.8.0-openjdk-headless && \
-    rm -Rf /kura /root/.m2 && dnf -y clean all && \
-    chmod +rw /var/log/
+    rm -Rf /kura /root/.m2 && dnf -y clean all
 
-	
 EXPOSE 8080
 
 ENTRYPOINT ["/opt/eclipse/kura/bin/start_kura.sh"]
