@@ -22,8 +22,10 @@ RUN dnf -y install git java-1.8.0-openjdk-devel maven procps-ng zip unzip tar ps
     /kura/kura/distrib/target/kura_3.0.0-SNAPSHOT_fedora25-nn_installer.sh && \
     dnf remove -y git java-1.8.0-openjdk-devel maven && \
     dnf install -y jre-1.8.0-openjdk-headless && \
-    rm -Rf /kura /root/.m2 && dnf -y clean all
+    rm -Rf /kura /root/.m2 && dnf -y clean all && \
+	chmod +w /var/log/kura.log
 
+	
 EXPOSE 8080
 
 ENTRYPOINT ["/opt/eclipse/kura/bin/start_kura.sh"]
